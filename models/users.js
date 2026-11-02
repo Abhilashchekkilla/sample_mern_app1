@@ -1,9 +1,15 @@
-let monoose=require('mongoose');
-let userSchema=monoose.Schema({
+let mongoose=require('mongoose');
+let userschema=mongoose.Schema({
     name:String,
-    email:String,
+    email:{
+        type:String,
+        unique:true
+    },
     password:String,
-    role:String
-});
-let users=monoose.model("users",userSchema);
+    role:{
+        type:String,
+        enum:["HR","EMPLOYEE"]
+    }
+})
+let users=mongoose.model('users',userschema);
 module.exports={users}
